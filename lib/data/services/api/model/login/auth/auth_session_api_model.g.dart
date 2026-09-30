@@ -9,7 +9,7 @@ part of 'auth_session_api_model.dart';
 AuthSessionApiModel _$AuthSessionApiModelFromJson(Map<String, dynamic> json) =>
     AuthSessionApiModel(
       token: json['token'] as String,
-      user: AuthSesssionApiModelResponse.fromJson(
+      user: AuthSessionUserApiModel.fromJson(
         json['user'] as Map<String, dynamic>,
       ),
     );
@@ -18,13 +18,13 @@ Map<String, dynamic> _$AuthSessionApiModelToJson(
   AuthSessionApiModel instance,
 ) => <String, dynamic>{'token': instance.token, 'user': instance.user.toJson()};
 
-AuthSesssionApiModelResponse _$AuthSesssionApiModelResponseFromJson(
+AuthSessionUserApiModel _$AuthSessionUserApiModelFromJson(
   Map<String, dynamic> json,
-) => AuthSesssionApiModelResponse(
+) => AuthSessionUserApiModel(
   name: json['name'] as String,
   email: json['email'] as String,
 );
 
-Map<String, dynamic> _$AuthSesssionApiModelResponseToJson(
-  AuthSesssionApiModelResponse instance,
+Map<String, dynamic> _$AuthSessionUserApiModelToJson(
+  AuthSessionUserApiModel instance,
 ) => <String, dynamic>{'name': instance.name, 'email': instance.email};

@@ -5,7 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'auth_session_api_model.g.dart';
 
 @JsonSerializable()
-class const AuthSessionApiModel ({required final String token, required final AuthSesssionApiModelResponse user}) extends Equatable{
+class const AuthSessionApiModel ({required final String token, required final AuthSessionUserApiModel user}) extends Equatable{
 
   factory AuthSessionApiModel.fromJson(Map<String, dynamic> json) => _$AuthSessionApiModelFromJson(json);
 
@@ -17,14 +17,14 @@ class const AuthSessionApiModel ({required final String token, required final Au
 }
 
 @JsonSerializable()
-class const AuthSesssionApiModelResponse({
+class const AuthSessionUserApiModel({
   required final String name,
   required final String email,
 })extends Equatable{
 
-  factory AuthSesssionApiModelResponse.fromJson(Map<String, dynamic> json) => _$AuthSesssionApiModelResponseFromJson(json);
+  factory AuthSessionUserApiModel.fromJson(Map<String, dynamic> json) => _$AuthSessionUserApiModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AuthSesssionApiModelResponseToJson(this);
+  Map<String, dynamic> toJson() => _$AuthSessionUserApiModelToJson(this);
 
   @override
   List<Object?> get props => [name, email];
