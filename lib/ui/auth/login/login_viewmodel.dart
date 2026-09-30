@@ -1,5 +1,6 @@
 
 import 'package:appwordcup2026/core/exceptions/command.dart';
+import 'package:appwordcup2026/core/logging/app_logger.dart';
 import 'package:appwordcup2026/core/result.dart';
 import 'package:appwordcup2026/data/repositories/auth/auth_repository.dart';
 import 'package:appwordcup2026/domain/models/auth_session.dart';
@@ -9,6 +10,8 @@ class LoginViewmodel({required final AuthRepository _authRepository}) extends Ch
   
   late final login = Command1<void,(String, String)>(_login);
   String name = '';
+
+  final _log = AppLogger('LoginViewModel');
   
   Future<Result<void>> _login((String, String) credentials) async {
     final (email, password) = credentials;
@@ -20,6 +23,7 @@ class LoginViewmodel({required final AuthRepository _authRepository}) extends Ch
         name = value.user.name;
         return Result.done;
       case Error<AuthSession>(:final error):
+      _log.error('Falha ao entrar', error:  error, stackTrace: error.stackTrace );
         return Result.error(error);
     }
   }
