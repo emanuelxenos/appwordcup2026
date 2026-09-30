@@ -1,7 +1,8 @@
+import 'package:appwordcup2026/config/application_bindings.dart';
 import 'package:material_ui/material_ui.dart';
 import './appwordcup.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const ApplicationBindings(child: MainApp()));
 }
 

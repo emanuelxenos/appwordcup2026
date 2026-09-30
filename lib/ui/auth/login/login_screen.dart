@@ -1,3 +1,4 @@
+import 'package:appwordcup2026/ui/auth/login/login_viewmodel.dart';
 import 'package:appwordcup2026/ui/auth/login/widgets/emblem.dart';
 import 'package:appwordcup2026/ui/auth/login/widgets/header.dart';
 import 'package:appwordcup2026/ui/auth/login/widgets/login_form.dart';
@@ -6,7 +7,7 @@ import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
 import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:material_ui/material_ui.dart';
 
-class const LoginScreen({super.key}) extends StatefulWidget {
+class const LoginScreen({super.key, required final LoginViewmodel viewmodel}) extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
