@@ -1,5 +1,5 @@
 final class Environment._(){
-  static const baseUrl = String.fromEnvironment('BASE_URL', defaultValue: 'http://localhost:8080');
+  static const baseUrl = String.fromEnvironment('BASE_URL', defaultValue: 'http://192.168.12.10:8080');
 
   static String url (String path) => '$baseUrl$path';
 
