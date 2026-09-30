@@ -1,3 +1,4 @@
+import 'package:appwordcup2026/core/exceptions/command.dart';
 import 'package:appwordcup2026/core/result.dart';
 import 'package:appwordcup2026/ui/auth/login/login_viewmodel.dart';
 import 'package:appwordcup2026/ui/auth/login/widgets/emblem.dart';
@@ -40,7 +41,7 @@ void _onLoginResult(){
     Navigator.pop(context);
   }
 
-  if(command.result case Error()){
+  if(command.result case Error(:final error)){
     command.clearResult();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Erro ao realizer o login')));
   }
