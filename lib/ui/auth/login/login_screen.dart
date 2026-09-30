@@ -8,6 +8,7 @@ import 'package:appwordcup2026/ui/core/share/app_loading.dart';
 import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
 import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
 import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
 class const LoginScreen({super.key, required final LoginViewmodel viewmodel}) extends StatefulWidget {
@@ -44,6 +45,10 @@ void _onLoginResult(){
   if(command.result case Error(:final error)){
     command.clearResult();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Erro ao realizer o login')));
+  }
+
+  if(command.result is Ok){
+    context.go('/home', extra: widget.viewmodel.name);
   }
 
 }

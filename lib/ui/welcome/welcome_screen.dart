@@ -1,8 +1,10 @@
+import 'package:appwordcup2026/routing/routes.dart';
 import 'package:appwordcup2026/ui/core/share/app_assets.dart';
 import 'package:appwordcup2026/ui/core/share/licensed_badge.dart';
 import 'package:appwordcup2026/ui/core/share/logo_card.dart';
 import 'package:appwordcup2026/ui/welcome/widgets/stats_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
 
@@ -43,7 +45,7 @@ class WelcomeScreen extends StatelessWidget {
                   SizedBox(height: 72, child: StatsBar()),
                   const SizedBox(height: 20),
                   FilledButton(
-                    onPressed: () {},
+                    onPressed: () => context.go(Routes.login),
                     child: Text('COMEÇAR A COLECIONAR  →'),
                   ),
                   const SizedBox(height: 8),
