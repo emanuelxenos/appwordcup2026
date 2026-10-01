@@ -1,5 +1,6 @@
 import 'package:appwordcup2026/core/exceptions/command.dart';
 import 'package:appwordcup2026/core/result.dart';
+import 'package:appwordcup2026/routing/routes.dart';
 import 'package:appwordcup2026/ui/auth/login/login_viewmodel.dart';
 import 'package:appwordcup2026/ui/auth/login/widgets/emblem.dart';
 import 'package:appwordcup2026/ui/auth/login/widgets/header.dart';
@@ -112,7 +113,9 @@ void _onLoginResult(){
                     foregroundColor: AppColors.ink,
                     textStyle: AppTextStyles.bodyBold,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push(Routes.register);
+                  },
                   child: Text('Não tem conta?  Criar conta →'),
                 ),
               ],

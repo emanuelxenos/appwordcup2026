@@ -1,6 +1,7 @@
 import 'package:appwordcup2026/routing/routes.dart';
 import 'package:appwordcup2026/ui/auth/login/login_bindings.dart';
 import 'package:appwordcup2026/ui/auth/login/login_screen.dart';
+import 'package:appwordcup2026/ui/auth/register/register_screen.dart';
 import 'package:appwordcup2026/ui/home/home_screen.dart';
 import 'package:appwordcup2026/ui/splash/splash_screen.dart';
 import 'package:appwordcup2026/ui/welcome/welcome_screen.dart';
@@ -17,5 +18,6 @@ GoRouter router() => GoRouter(
       return LoginScreen(viewmodel: context.read());
     },)),
     GoRoute(path: '/home', builder: (context, state) => HomeScreen(name: state.extra as String),),
+    GoRoute(path: Routes.register, builder: (_, _) => RegisterScreen()),
   ],
 );

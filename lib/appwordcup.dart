@@ -1,5 +1,6 @@
-import 'package:appwordcup2026/routing/router.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:provider/provider.dart';
 
 import 'ui/core/theme/app_theme.dart';
 
@@ -13,7 +14,7 @@ class const MainApp({super.key}) extends StatelessWidget {
       },
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
-      routerConfig: router(),
+      routerConfig: context.read<GoRouter>(),
     );
   }
 
