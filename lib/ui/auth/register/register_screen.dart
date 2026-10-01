@@ -1,11 +1,14 @@
+import 'package:appwordcup2026/domain/models/team/team.dart';
 import 'package:appwordcup2026/ui/auth/register/widgets/header.dart';
 import 'package:appwordcup2026/ui/auth/register/widgets/register_form.dart';
+import 'package:appwordcup2026/ui/auth/register/widgets/team_picker.dart';
 import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
 import 'package:material_ui/material_ui.dart';
 
 class RegisterScreen extends StatefulWidget {
   const new({super.key});
- @override
+
+  @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
@@ -46,7 +49,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   nameController: _name,
                   emailController: _email,
                   passwordController: _password,
-                  teamPicker: Text('Team Picker vai aqui!!!'),
+                  teamPicker: TeamPicker(
+                    teams: [
+                      Team(
+                        code: 'BRA',
+                        name: 'Brasil',
+                        flagUrl: '/flags/bra.png',
+                        primaryColor: 0xFFFFDF00,
+                      ),
+                      Team(
+                        code: 'CAN',
+                        name: 'CANADA',
+                        flagUrl: '/flags/can.png',
+                        primaryColor: 0xFFd52B1E,
+                      ),
+                    ],
+                    available: 48,
+                    selected: {'CAN'},
+                    onToggled: (_) {},
+                    // errorMessage: 'Erro ao buscar times',
+                    // loading: true,
+                  ),
                   acceptedTerms: _acceptedTerms,
                   onAcceptedTermChanged: (value) {
                     setState(() {
