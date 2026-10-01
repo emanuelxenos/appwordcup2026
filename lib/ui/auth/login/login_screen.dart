@@ -1,4 +1,3 @@
-import 'package:appwordcup2026/core/exceptions/command.dart';
 import 'package:appwordcup2026/core/result.dart';
 import 'package:appwordcup2026/routing/routes.dart';
 import 'package:appwordcup2026/ui/auth/login/login_viewmodel.dart';
@@ -47,10 +46,6 @@ void _onLoginResult(){
   if(command.result case Error(:final error)){
     command.clearResult();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(ErrorMessages.of(error))));
-  }
-
-  if(command.result is Ok){
-    context.go('/home', extra: widget.viewmodel.name);
   }
 
 }

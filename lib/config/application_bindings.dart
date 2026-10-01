@@ -1,4 +1,5 @@
 import 'package:appwordcup2026/config/environment.dart';
+import 'package:appwordcup2026/core/auth/auth_session_notifier.dart';
 import 'package:appwordcup2026/data/repositories/auth/auth_repository.dart';
 import 'package:appwordcup2026/data/repositories/auth/auth_repository_remote.dart';
 import 'package:appwordcup2026/data/repositories/auth_session/auth_session_repository.dart';
@@ -8,6 +9,8 @@ import 'package:appwordcup2026/data/repositories/team/team_repository_remote.dar
 import 'package:appwordcup2026/data/services/api/auth_api.dart';
 import 'package:appwordcup2026/data/services/api/local/secure_storage_service.dart';
 import 'package:appwordcup2026/data/services/api/team_api.dart';
+import 'package:appwordcup2026/domain/use_cases/auth/auth_logout_use_case.dart';
+import 'package:appwordcup2026/domain/use_cases/auth/auth_restore_session.dart';
 import 'package:appwordcup2026/routing/router.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
@@ -28,6 +31,19 @@ class const ApplicationBindings({super.key, required final Widget child}) extend
         Provider<AuthSessionRepository>(create: (context) => AuthSessionRepositoryLocal(storage: context.read()),),
         Provider(create: (context) => TeamApi(context.read()),),
         Provider<TeamRepository>(create: (context) => TeamRepositoryRemote(teamApi: context.read()),),
+         Provider(
+          create: (context) =>
+              AuthLogoutUseCase(authSessionRepository: context.read()),
+        ),
+        Provider(
+          create: (context) =>
+              AuthRestoreSessionUseCase(authSessionRepository: context.read()),
+        ),
+        ChangeNotifierProvider(
+          lazy: false,
+          create: (context) => AuthSessionNotifier(
+          authLogoutUseCase: context.read(),
+          authRestoreSessionUseCase: context.read()),),      
       ],
       child: child,
     );

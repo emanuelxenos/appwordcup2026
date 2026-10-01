@@ -12,7 +12,10 @@ class const LoginBindings ({super.key, required final WidgetBuilder screenBuilde
       authRepository: context.read(),
       authSessionRepository: context.read(),
       ),),
-      ChangeNotifierProvider(create: (context) => LoginViewmodel(loginUseCase: context.read()),),
+      ChangeNotifierProvider(create: (context) => LoginViewmodel(
+        loginUseCase: context.read(),
+        sessionNotifier: context.read()
+      ),),
     ],
     builder:(context, child) => screenBuilder(context),
     );
