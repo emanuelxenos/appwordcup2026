@@ -15,5 +15,7 @@ final class ErrorMessages._() {
     UnknownException() => 'Algo deu errado. Tente novamente.',
      EmailAlreadyInUseException() =>
       'Este e-mail já tem conta. Entre com ele ou use outro',
+    StorageException() ||
+    UnknownException() => 'Algo deu errado. Tente novamente.',
   };
 }
