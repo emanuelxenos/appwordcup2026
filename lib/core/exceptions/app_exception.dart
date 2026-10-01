@@ -19,3 +19,6 @@ final  class const ForbiddenException({super.cause, super.stackTrace}) extends A
 final  class const NotFoundException({super.cause, super.stackTrace}) extends AppException;
 
 final  class const ServerException({super.cause, super.stackTrace}) extends AppException;
+
+final class const EmailAlreadyInUseException({super.cause, super.stackTrace})
+    extends AppException;

@@ -5,6 +5,7 @@ import 'package:appwordcup2026/data/services/api/auth_api.dart';
 import 'package:appwordcup2026/data/services/api/mappers/auth_session_api_model_mapper.dart';
 import 'package:appwordcup2026/data/services/api/mappers/dio_exception_mapper.dart';
 import 'package:appwordcup2026/data/services/api/model/login/login_request.dart';
+import 'package:appwordcup2026/data/services/api/model/user/register_user_request.dart';
 import 'package:appwordcup2026/domain/models/auth_session.dart';
 import 'package:dio/dio.dart';
 
@@ -19,6 +20,34 @@ class AuthRepositoryRemote({required final AuthApi _authApi}) implements AuthRep
       if(e.response?.statusCode == 401){
         return Result.error(InvalidCredentialsException(cause: e, stackTrace: st));
       }
+      return Result.error(e.toAppException(st));
+    }
+  }
+
+  @override
+  Future<Result<void>> register({
+    required String name,
+    required String email,
+    required String password,
+    required List<String> favoriteTeams,
+    required bool acceptedTerms,
+  }) async {
+    try {
+      await _authApi.register(
+        RegisterUserRequest(
+          name: name,
+          email: email,
+          password: password,
+          favoriteTeams: favoriteTeams,
+          acceptedTerms: acceptedTerms,
+        ),
+      );
+      return Result.done;
+    } on DioException catch (e, st) {
+      if (e.response?.statusCode == 409) {
+        return Result.error(EmailAlreadyInUseException());
+      }
+
       return Result.error(e.toAppException(st));
     }
   }

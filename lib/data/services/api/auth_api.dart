@@ -1,5 +1,6 @@
 import 'package:appwordcup2026/data/services/api/model/login/auth/auth_session_api_model.dart';
 import 'package:appwordcup2026/data/services/api/model/login/login_request.dart';
+import 'package:appwordcup2026/data/services/api/model/user/register_user_request.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -13,4 +14,8 @@ abstract class AuthApi{
   @POST('/v1/auth/login')
   @Extra({})
   Future<AuthSessionApiModel> login(@Body() LoginRequest request);
+
+  @POST('/v1/users')
+  @Extra({})
+  Future<void> register(@Body() RegisterUserRequest request);
 }

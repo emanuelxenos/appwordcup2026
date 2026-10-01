@@ -9,7 +9,7 @@ import 'package:validatorless/validatorless.dart';
 
 class const RegisterForm({
   super.key,
-  required final VoidCallback onSubmit,
+  required final VoidCallback? onSubmit,
   required final Widget teamPicker,
   required final bool acceptedTerms,
   required final ValueChanged<bool> onAcceptedTermChanged,

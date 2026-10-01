@@ -13,5 +13,7 @@ final class ErrorMessages._() {
     ServerException() =>
       'Estamos com um problema no servidor. Tente mais tarde.',
     UnknownException() => 'Algo deu errado. Tente novamente.',
+     EmailAlreadyInUseException() =>
+      'Este e-mail já tem conta. Entre com ele ou use outro',
   };
 }
