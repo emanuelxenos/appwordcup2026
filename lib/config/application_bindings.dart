@@ -1,7 +1,10 @@
 import 'package:appwordcup2026/config/environment.dart';
 import 'package:appwordcup2026/data/repositories/auth/auth_repository.dart';
 import 'package:appwordcup2026/data/repositories/auth/auth_repository_remote.dart';
+import 'package:appwordcup2026/data/repositories/team/team_repository.dart';
+import 'package:appwordcup2026/data/repositories/team/team_repository_remote.dart';
 import 'package:appwordcup2026/data/services/api/auth_api.dart';
+import 'package:appwordcup2026/data/services/api/team_api.dart';
 import 'package:appwordcup2026/routing/router.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
@@ -18,6 +21,8 @@ class const ApplicationBindings({super.key, required final Widget child}) extend
         Provider(create: (context) => Dio(BaseOptions(baseUrl: Environment.baseUrl))),
         Provider(create: (context) => AuthApi(context.read())),
         Provider<AuthRepository>(create: (context) => AuthRepositoryRemote(authApi: context.read())),
+        Provider(create: (context) => TeamApi(context.read()),),
+        Provider<TeamRepository>(create: (context) => TeamRepositoryRemote(teamApi: context.read()),),
       ],
       child: child,
     );

@@ -1,0 +1,14 @@
+import 'package:appwordcup2026/data/services/api/model/team/team_api_model.dart';
+import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
+
+part 'team_api.g.dart';
+
+@RestApi()
+abstract class TeamApi {
+  factory TeamApi(Dio dio) = _TeamApi;
+
+  @GET('/v1/teams')
+  @Extra({})
+  Future<List<TeamApiModel>> getTeams();
+}

@@ -1,12 +1,15 @@
-import 'package:appwordcup2026/domain/models/team/team.dart';
+import 'package:appwordcup2026/core/result.dart';
+import 'package:appwordcup2026/ui/auth/register/register_viewmodel.dart';
 import 'package:appwordcup2026/ui/auth/register/widgets/header.dart';
 import 'package:appwordcup2026/ui/auth/register/widgets/register_form.dart';
 import 'package:appwordcup2026/ui/auth/register/widgets/team_picker.dart';
+import 'package:appwordcup2026/ui/core/share/error_messages.dart';
 import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
 import 'package:material_ui/material_ui.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const new({super.key});
+class const RegisterScreen({super.key,
+ required final RegisterViewModel viewModel
+}) extends StatefulWidget {
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -20,7 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _search = TextEditingController();
 
   var _acceptedTerms = false;
-
+  final _favorites = <String>{};
   @override
   void dispose() {
     _name.dispose();
@@ -49,26 +52,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   nameController: _name,
                   emailController: _email,
                   passwordController: _password,
-                  teamPicker: TeamPicker(
-                    teams: [
-                      Team(
-                        code: 'BRA',
-                        name: 'Brasil',
-                        flagUrl: '/flags/bra.png',
-                        primaryColor: 0xFFFFDF00,
-                      ),
-                      Team(
-                        code: 'CAN',
-                        name: 'CANADA',
-                        flagUrl: '/flags/can.png',
-                        primaryColor: 0xFFd52B1E,
-                      ),
-                    ],
-                    available: 48,
-                    selected: {'CAN'},
-                    onToggled: (_) {},
-                    // errorMessage: 'Erro ao buscar times',
-                    // loading: true,
+                  teamPicker: ListenableBuilder(
+                    listenable: Listenable.merge(
+                      [
+                        widget.viewModel.loadTeams,
+                        _search
+                      ]
+                    ),
+                    builder: (context,_) {
+                      final teams = widget.viewModel.teams;
+                      final loadTeams = widget.viewModel.loadTeams;
+                      return TeamPicker(
+                        teams: widget.viewModel.teamMatching(_search.text),
+                        available: teams.length,
+                        selected: _favorites,
+                        searchController: _search,
+                        loading: loadTeams.running,
+                        errorMessage: switch(loadTeams.result){
+                          Error(:final error) => ErrorMessages.of(error),
+                          _=> null,
+                        },
+                        onRetry: loadTeams.execute,
+                        onToggled: (code) {
+                          setState(() {
+                            if(!_favorites.remove(code)){
+                              _favorites.add(code);
+                            }
+                          });
+                        },
+                        // errorMessage: 'Erro ao buscar times',
+                        // loading: true,
+                      );
+                    }
                   ),
                   acceptedTerms: _acceptedTerms,
                   onAcceptedTermChanged: (value) {
