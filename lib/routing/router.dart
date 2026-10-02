@@ -6,6 +6,7 @@ import 'package:appwordcup2026/ui/auth/register/register_bindings.dart';
 import 'package:appwordcup2026/ui/auth/register/register_screen.dart';
 import 'package:appwordcup2026/ui/album/album_screen.dart';
 import 'package:appwordcup2026/ui/home/home_screen.dart';
+import 'package:appwordcup2026/ui/home/home_bindings.dart';
 import 'package:appwordcup2026/ui/main/main_screen.dart';
 import 'package:appwordcup2026/ui/more/more_screen.dart';
 import 'package:appwordcup2026/ui/splash/splash_screen.dart';
@@ -53,9 +54,11 @@ GoRouter router(AuthSessionNotifier session)=> GoRouter(
         routes: [
           GoRoute(
             path: Routes.home,
-            builder: (context, state) => HomeScreen(
-              name: state.extra as String? ?? session.user?.name ?? '',
-              initials: session.initials,
+              builder: (context, state) => HomeBindings(
+                screenBuilder: (context) => HomeScreen(
+                  name: state.extra as String? ?? session.user?.name ?? '',
+                  initials: session.initials,
+                ),
             ),
           ),
         ],
