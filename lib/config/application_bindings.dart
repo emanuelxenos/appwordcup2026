@@ -24,7 +24,6 @@ class const ApplicationBindings({super.key, required final Widget child}) extend
     return MultiProvider(
       providers: [
         Provider(create: (context) => SecureStorageService(),),
-        Provider<GoRouter>(create: (context) => router()),
         Provider(create: (context) => Dio(BaseOptions(baseUrl: Environment.baseUrl))),
         Provider(create: (context) => AuthApi(context.read())),
         Provider<AuthRepository>(create: (context) => AuthRepositoryRemote(authApi: context.read())),
@@ -44,6 +43,7 @@ class const ApplicationBindings({super.key, required final Widget child}) extend
           create: (context) => AuthSessionNotifier(
           authLogoutUseCase: context.read(),
           authRestoreSessionUseCase: context.read()),),      
+        Provider<GoRouter>(create: (context) => router(context.read())),
       ],
       child: child,
     );
