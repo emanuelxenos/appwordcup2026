@@ -7,6 +7,7 @@ import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
 import 'package:appwordcup2026/ui/home/widgets/action_card.dart';
 import 'package:appwordcup2026/ui/home/home_viewmodel.dart';
 import 'package:appwordcup2026/ui/home/widgets/recent_stickers.dart';
+import 'package:appwordcup2026/ui/home/widgets/repeated_strip.dart';
 
 class const HomeScreen({
   super.key,
@@ -18,56 +19,67 @@ class const HomeScreen({
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Header(name: name, initials: initials),
-      body: ListView(
-        padding: const EdgeInsets.only(top: 8, bottom: 24),
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimens.gridMargin,
+      body: RefreshIndicator(
+        onRefresh: () async {},
+        child: ListView(
+          padding: const EdgeInsets.only(top: 8, bottom: 24),
+          physics: const AlwaysScrollableScrollPhysics(),
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.gridMargin,
+              ),
+              child: AlbumHero(),
             ),
-            child: AlbumHero(),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimens.gridMargin,
-            ),
-            child: Column(
-              crossAxisAlignment: .start,
-              children: [
-                const SizedBox(height: 24),
-                Row(
-                  spacing: 16,
-                  children: [
-                    Expanded(
-                      child: ActionCard(
-                        icon: Icons.add_rounded,
-                        bubbleColor: AppColors.red,
-                        iconColor: AppColors.white,
-                        title: 'ADICIONAR',
-                        subTitle: 'figurinha',
-                        onTap: () {},
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.gridMargin,
+              ),
+              child: Column(
+                crossAxisAlignment: .start,
+                children: [
+                  const SizedBox(height: 24),
+                  Row(
+                    spacing: 16,
+                    children: [
+                      Expanded(
+                        child: ActionCard(
+                          icon: Icons.add_rounded,
+                          bubbleColor: AppColors.red,
+                          iconColor: AppColors.white,
+                          title: 'ADICIONAR',
+                          subTitle: 'figurinha',
+                          onTap: () {},
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: ActionCard(
-                        icon: Icons.swap_horiz_rounded,
-                        bubbleColor: AppColors.yellow,
-                        iconColor: AppColors.ink,
-                        title: 'TROCAR',
-                        subTitle: 'com amigos',
-                        onTap: () {},
+                      Expanded(
+                        child: ActionCard(
+                          icon: Icons.swap_horiz_rounded,
+                          bubbleColor: AppColors.yellow,
+                          iconColor: AppColors.ink,
+                          title: 'TROCAR',
+                          subTitle: 'com amigos',
+                          onTap: () {},
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 36),
-                Text('COLADAS RECENTEMENTE', style: AppTextStyles.overline),
-              ],
+                    ],
+                  ),
+                  const SizedBox(height: 36),
+                  Text('COLADAS RECENTEMENTE', style: AppTextStyles.overline),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 16),
-          _Recent(onStickerTap: (sticker) {}),
-        ],
+            const SizedBox(height: 16),
+            _Recent(onStickerTap: (sticker) {}),
+            const SizedBox(height: 22),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.gridMargin,
+              ),
+              child: RepeatedStrip(count: 10, onTap: () {}),
+            ),
+          ],
+        ),
       ),
     );
   }
