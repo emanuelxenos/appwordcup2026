@@ -68,10 +68,12 @@ void _onLoginResult(){
             child: Column(
               mainAxisAlignment: .spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: .stretch,
-                  children: [
-                    const SizedBox(height: 20),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: .stretch,
+                      children: [
+                        const SizedBox(height: 20),
                     Emblem(),
                     const SizedBox(height: 26),
                     Text(
@@ -102,6 +104,8 @@ void _onLoginResult(){
                       ),
                     ),
                   ],
+                ),
+                  ),
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
