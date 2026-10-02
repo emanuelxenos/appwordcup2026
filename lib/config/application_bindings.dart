@@ -10,6 +10,7 @@ import 'package:appwordcup2026/data/repositories/team/team_repository.dart';
 import 'package:appwordcup2026/data/repositories/team/team_repository_remote.dart';
 import 'package:appwordcup2026/data/services/api/auth_api.dart';
 import 'package:appwordcup2026/data/services/api/album_api.dart';
+import 'package:appwordcup2026/data/services/api/interceptors/auth_interceptor.dart';
 import 'package:appwordcup2026/data/services/api/local/secure_storage_service.dart';
 import 'package:appwordcup2026/data/services/api/team_api.dart';
 import 'package:appwordcup2026/domain/use_cases/auth/auth_logout_use_case.dart';
@@ -27,7 +28,15 @@ class const ApplicationBindings({super.key, required final Widget child}) extend
     return MultiProvider(
       providers: [
         Provider(create: (context) => SecureStorageService(),),
-        Provider(create: (context) => Dio(BaseOptions(baseUrl: Environment.baseUrl))),
+        Provider(
+          create: (context) => AuthInterceptor(storage: context.read()),
+          dispose: (context, interceptor) => interceptor.dispose(),
+        ),
+        Provider(
+          create: (context) =>
+              Dio(BaseOptions(baseUrl: Environment.baseUrl))
+                ..interceptors.add(context.read<AuthInterceptor>()),
+        ),
         Provider(create: (context) => AuthApi(context.read())),
         Provider<AuthRepository>(create: (context) => AuthRepositoryRemote(authApi: context.read())),
         Provider(create: (context) => AlbumApi(context.read())),
