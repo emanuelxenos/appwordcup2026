@@ -20,6 +20,15 @@ class AuthSessionNotifier({
   AuthSessionUser? get user => _user;
   bool get isSignedIn => _user != null;
 
+  String get initials {
+    final name = _user?.name.trim() ?? '';
+    if (name.isEmpty) return '';
+
+    final words = name.split(RegExp(r'\s+'));
+    final first = words.first[0];
+    return (words.length == 1 ? first : first + words.last[0]).toUpperCase();
+  }
+
   this {
     unawaited(_restore());
   }

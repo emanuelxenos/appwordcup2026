@@ -7,7 +7,7 @@ class const BottomNavBar({
   required final ValueChanged<int> onDestinationSelected,
 }) extends StatelessWidget {
   final _destinations = const <({IconData icon, String label})>[
-    (icon: Icons.diamond_outlined, label: 'HOME'),
+    (icon: Icons.home, label: 'HOME'),
     (icon: Icons.grid_view_rounded, label: 'ÁLBUM'),
     (icon: Icons.swap_horiz_rounded, label: 'TROCAS'),
     (icon: Icons.menu_rounded, label: 'MAIS'),
