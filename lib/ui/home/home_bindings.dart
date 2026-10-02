@@ -1,4 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:appwordcup2026/core/view_model_initializable.dart';
+import 'package:appwordcup2026/ui/home/home_viewmodel.dart';
 
 class const HomeBindings({
   super.key,
@@ -6,6 +9,10 @@ class const HomeBindings({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return screenBuilder(context);
+    return ChangeNotifierProvider(
+      create: (context) =>
+          HomeViewModel(albumRepository: context.read()).initialized(),
+      child: Builder(builder: screenBuilder),
+    );
   }
 }

@@ -11,6 +11,7 @@ import 'package:appwordcup2026/ui/home/widgets/repeated_strip.dart';
 
 class const HomeScreen({
   super.key,
+  required final HomeViewModel viewModel,
   required final String name,
   required final String initials,
 }) extends StatelessWidget {
@@ -20,11 +21,13 @@ class const HomeScreen({
     return Scaffold(
       appBar: Header(name: name, initials: initials),
       body: RefreshIndicator(
-        onRefresh: () async {},
-        child: ListView(
-          padding: const EdgeInsets.only(top: 8, bottom: 24),
-          physics: const AlwaysScrollableScrollPhysics(),
-          children: [
+        onRefresh: viewModel.refresh,
+        child: ListenableBuilder(
+          listenable: viewModel,
+          builder: (context, _) => ListView(
+            padding: const EdgeInsets.only(top: 8, bottom: 24),
+            physics: const AlwaysScrollableScrollPhysics(),
+            children: [
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: AppDimens.gridMargin,
@@ -70,7 +73,10 @@ class const HomeScreen({
               ),
             ),
             const SizedBox(height: 16),
-            _Recent(onStickerTap: (sticker) {}),
+            RecentStickers(
+              stickers: viewModel.recentStickers,
+              onStickerTap: (sticker) {},
+            ),
             const SizedBox(height: 22),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -78,31 +84,10 @@ class const HomeScreen({
               ),
               child: RepeatedStrip(count: 10, onTap: () {}),
             ),
-          ],
+            ],
+          ),
         ),
       ),
-    );
-  }
-}
-
-class const _Recent({
-  required final ValueChanged<RecentStickerView> onStickerTap,
-}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return RecentStickers(
-      stickers: [
-        (
-          code: 'BRA',
-          number: 1,
-          flagCode: 'BRA',
-          label: 'BRA',
-          teamColor: Color(0xFFFFDF00),
-          teamName: 'Brasil',
-          count: 1,
-        ),
-      ],
-      onStickerTap: onStickerTap,
     );
   }
 }
