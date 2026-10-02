@@ -18,7 +18,7 @@ class const RecentStickers({
               scrollDirection: .horizontal,
               padding: .only(left: AppDimens.gridMargin),
               itemBuilder: (context, index) {
-                final sticker = stickers.first;
+                final sticker = stickers[index];
                 return StickerCard(
                   number: sticker.number,
                   label: sticker.label,
@@ -29,7 +29,7 @@ class const RecentStickers({
                 );
               },
               separatorBuilder: (context, index) => const SizedBox(width: 12),
-              itemCount: 10,
+              itemCount: stickers.length,
             ),
     );
   }

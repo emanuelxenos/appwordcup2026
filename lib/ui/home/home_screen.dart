@@ -19,76 +19,82 @@ class const HomeScreen({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: Header(
-        name: session.user?.name ?? name,
-        initials: session.isSignedIn ? session.initials : initials,
-      ),
-      body: RefreshIndicator(
-        onRefresh: viewModel.refresh,
-        child: ListenableBuilder(
-          listenable: viewModel,
-          builder: (context, _) => ListView(
-            padding: const EdgeInsets.only(top: 8, bottom: 24),
-            physics: const AlwaysScrollableScrollPhysics(),
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.gridMargin,
+    return ListenableBuilder(
+      listenable: session,
+      builder: (context, _) => Scaffold(
+        appBar: Header(
+          name: session.user?.name ?? name,
+          initials: session.isSignedIn ? session.initials : initials,
+        ),
+        body: RefreshIndicator(
+          onRefresh: viewModel.refresh,
+          child: ListenableBuilder(
+            listenable: viewModel,
+            builder: (context, _) => ListView(
+              padding: const EdgeInsets.only(top: 8, bottom: 24),
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimens.gridMargin,
+                  ),
+                  child: AlbumHero(),
                 ),
-                child: AlbumHero(),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.gridMargin,
-                ),
-                child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    const SizedBox(height: 24),
-                    Row(
-                      spacing: 16,
-                      children: [
-                        Expanded(
-                          child: ActionCard(
-                            icon: Icons.add_rounded,
-                            bubbleColor: AppColors.red,
-                            iconColor: AppColors.white,
-                            title: 'ADICIONAR',
-                            subTitle: 'figurinha',
-                            onTap: () {},
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimens.gridMargin,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [
+                      const SizedBox(height: 24),
+                      Row(
+                        spacing: 16,
+                        children: [
+                          Expanded(
+                            child: ActionCard(
+                              icon: Icons.add_rounded,
+                              bubbleColor: AppColors.red,
+                              iconColor: AppColors.white,
+                              title: 'ADICIONAR',
+                              subTitle: 'figurinha',
+                              onTap: () {},
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: ActionCard(
-                            icon: Icons.swap_horiz_rounded,
-                            bubbleColor: AppColors.yellow,
-                            iconColor: AppColors.ink,
-                            title: 'TROCAR',
-                            subTitle: 'com amigos',
-                            onTap: () {},
+                          Expanded(
+                            child: ActionCard(
+                              icon: Icons.swap_horiz_rounded,
+                              bubbleColor: AppColors.yellow,
+                              iconColor: AppColors.ink,
+                              title: 'TROCAR',
+                              subTitle: 'com amigos',
+                              onTap: () {},
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 36),
-                    Text('COLADAS RECENTEMENTE', style: AppTextStyles.overline),
-                  ],
+                        ],
+                      ),
+                      const SizedBox(height: 36),
+                      Text(
+                        'COLADAS RECENTEMENTE',
+                        style: AppTextStyles.overline,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              RecentStickers(
-                stickers: viewModel.recentStickers,
-                onStickerTap: (sticker) {},
-              ),
-              const SizedBox(height: 22),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.gridMargin,
+                const SizedBox(height: 16),
+                RecentStickers(
+                  stickers: viewModel.recentStickers,
+                  onStickerTap: (sticker) {},
                 ),
-                child: RepeatedStrip(count: 10, onTap: () {}),
-              ),
-            ],
+                const SizedBox(height: 22),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimens.gridMargin,
+                  ),
+                  child: RepeatedStrip(count: 10, onTap: () {}),
+                ),
+              ],
+            ),
           ),
         ),
       ),
