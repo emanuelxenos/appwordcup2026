@@ -4,7 +4,7 @@ final class AppAssets._() {
 }
 
 final class const Images._(){
-  final albumpanini2026 = 'assets/images/album_panini_2026.png';
+  final albumPanini2026 = 'assets/images/album_panini_2026.jpg';
   final envelopePanini2026 = 'assets/images/envelope_panini_2026.jpg';
   final logoFifaWc26 = 'assets/images/logo_fifa_wc26.png';
   final mascotesMapleZayuClutch = 'assets/images/mascotes_maple_zayu_clutch.jpg';
