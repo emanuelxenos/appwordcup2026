@@ -1,3 +1,4 @@
+import 'package:appwordcup2026/core/auth/auth_session_notifier.dart';
 import 'package:appwordcup2026/routing/routes.dart';
 import 'package:appwordcup2026/ui/core/share/app_assets.dart';
 import 'package:appwordcup2026/ui/core/share/licensed_badge.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
-class const SplashScreen({super.key}) extends StatefulWidget {
+class const SplashScreen({super.key, required final AuthSessionNotifier _sessionNotifier}) extends StatefulWidget {
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -21,8 +22,10 @@ late final  _boot = AnimationController(
   duration:  Duration(milliseconds: 2400),
 );
 
+@override
 initState() {
   super.initState();
+  widget._sessionNotifier.addListener(_exitWhenReady);
   _boot.forward().then((_) {
     _exitWhenReady();
   });
@@ -30,13 +33,16 @@ initState() {
 
 @override
   void dispose() {
-    // TODO: implement dispose
+    widget._sessionNotifier.removeListener(_exitWhenReady);
     _boot.dispose();
     super.dispose();
   }
 
   void _exitWhenReady() {
-    if (!mounted || !_boot.isCompleted) return; 
+    if (!mounted || !_boot.isCompleted || !widget._sessionNotifier.isRestored) return; 
+
+    widget._sessionNotifier.removeListener(_exitWhenReady);
+
     context.go(Routes.welcome);
   }
 

@@ -28,7 +28,7 @@ GoRouter router(AuthSessionNotifier session)=> GoRouter(
     return isPublic ? Routes.home : null;
   },
   routes: [
-    GoRoute(path: Routes.splash, builder: (_, _) => SplashScreen()),
+    GoRoute(path: Routes.splash, builder: (context, _) => SplashScreen(sessionNotifier: context.read(),)),
     GoRoute(path: Routes.welcome, builder: (_, _) => WelcomeScreen()),
     GoRoute(path: Routes.login, builder: (_, _) => LoginBindings(screenBuilder: (context) {
       return LoginScreen(viewmodel: context.read());
