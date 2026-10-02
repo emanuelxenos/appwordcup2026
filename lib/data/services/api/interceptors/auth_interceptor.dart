@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:appwordcup2026/core/logging/app_logger.dart';
 import 'package:appwordcup2026/data/services/api/local/secure_storage_service.dart';
 import 'package:appwordcup2026/data/services/api/local/storage_keys.dart';
@@ -12,6 +14,9 @@ class AuthInterceptor extends Interceptor {
 
   final SecureStorageService _storage;
   final _log = AppLogger('AuthInterceptor');
+  final _unauthorized = StreamController<void>.broadcast();
+
+  Stream<void> get onUnauthorized => _unauthorized.stream;
 
   @override
   Future<void> onRequest(
@@ -34,6 +39,7 @@ class AuthInterceptor extends Interceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) {
     if (_endsSession(err)) {
       _log.info('Backend recusou o token');
+      _unauthorized.add(null);
     }
     handler.next(err);
   }
@@ -42,5 +48,7 @@ class AuthInterceptor extends Interceptor {
       _sessionEndedStatus.contains(err.response?.statusCode) &&
       err.requestOptions.headers.containsKey('Authorization');
 
-  void dispose() {}
+  void dispose() {
+    unawaited(_unauthorized.close());
+  }
 }
