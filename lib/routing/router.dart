@@ -55,6 +55,7 @@ GoRouter router(AuthSessionNotifier session)=> GoRouter(
             path: Routes.home,
             builder: (context, state) => HomeScreen(
               name: state.extra as String? ?? session.user?.name ?? '',
+              initials: session.initials,
             ),
           ),
         ],
