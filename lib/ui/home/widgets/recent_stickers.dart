@@ -1,7 +1,7 @@
+import 'package:flutter/widgets.dart';
 import 'package:appwordcup2026/ui/core/theme/theme.dart';
 import 'package:appwordcup2026/ui/home/home_viewmodel.dart';
 import 'package:appwordcup2026/ui/home/widgets/sticker_card.dart';
-import 'package:material_ui/material_ui.dart';
 
 class const RecentStickers({
   super.key,
@@ -17,7 +17,7 @@ class const RecentStickers({
           : ListView.separated(
               scrollDirection: .horizontal,
               padding: .only(left: AppDimens.gridMargin),
-              itemBuilder: (context, index) {
+              itemBuilder: (BuildContext context, int index) {
                 final sticker = stickers[index];
                 return StickerCard(
                   number: sticker.number,
@@ -28,7 +28,9 @@ class const RecentStickers({
                   onTap: () => onStickerTap(sticker),
                 );
               },
-              separatorBuilder: (context, index) => const SizedBox(width: 12),
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(width: 12);
+              },
               itemCount: stickers.length,
             ),
     );
@@ -39,11 +41,11 @@ class const _Empty() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.gridMargin),
+      padding: const .symmetric(horizontal: AppDimens.gridMargin),
       child: Align(
         alignment: .centerLeft,
         child: Text(
-          'Você ainda não colou nenhuma figurinha',
+          'Você ainda não colou nenhum figurinha',
           style: AppTextStyles.footnote.copyWith(color: AppColors.grayText),
         ),
       ),

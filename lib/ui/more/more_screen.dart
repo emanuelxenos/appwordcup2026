@@ -6,8 +6,8 @@ import 'package:appwordcup2026/ui/more/widgets/menu_row.dart';
 import 'package:appwordcup2026/ui/more/widgets/menu_section.dart';
 import 'package:appwordcup2026/ui/more/widgets/profile_card.dart';
 
-class const MoreScreen({super.key, required final AuthSessionNotifier session})
-  extends StatelessWidget {
+class const MoreScreen({super.key, required final AuthSessionNotifier _session})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,9 +16,9 @@ class const MoreScreen({super.key, required final AuthSessionNotifier session})
         padding: .fromLTRB(AppDimens.gridMargin, 16, AppDimens.gridMargin, 24),
         children: [
           ProfileCard(
-            initials: session.initials,
-            name: session.user?.name ?? '',
-            email: session.user?.email ?? '',
+            initials: _session.initials,
+            name: _session.user?.name ?? '',
+            email: _session.user?.email ?? '',
           ),
           const SizedBox(height: 24),
           const MenuSection(
@@ -29,14 +29,14 @@ class const MoreScreen({super.key, required final AuthSessionNotifier session})
                 bubbleColor: AppColors.red,
                 iconColor: AppColors.white,
                 title: 'MEU PERFIL',
-                subTitle: 'Nome, foto e dados da conta',
+                subTitle: 'nome, foto e dados da conta ',
               ),
               MenuRow(
                 icon: Icons.notifications_none_rounded,
                 bubbleColor: AppColors.ink,
                 iconColor: AppColors.yellow,
                 title: 'NOTIFICAÇÕES',
-                subTitle: 'Avisos de troca e novidades',
+                subTitle: 'avisos de troca e novidades',
               ),
             ],
           ),
@@ -47,26 +47,26 @@ class const MoreScreen({super.key, required final AuthSessionNotifier session})
               MenuRow(
                 icon: Icons.help_outline_rounded,
                 bubbleColor: AppColors.cream,
-                iconColor: AppColors.ink,
+                iconColor: AppColors.border,
                 bubbleRing: AppColors.ink,
                 title: 'COMO FUNCIONA',
-                subTitle: 'Guia rápido do álbum',
+                subTitle: 'guia rápido do álbum',
               ),
               MenuRow(
                 icon: Icons.mail_outline_rounded,
                 bubbleColor: AppColors.cream,
-                iconColor: AppColors.ink,
+                iconColor: AppColors.border,
                 bubbleRing: AppColors.ink,
                 title: 'FALE COM A GENTE',
-                subTitle: 'Dúvidas, erros e sugestões',
+                subTitle: 'dúvidas, erros e sugestões',
               ),
               MenuRow(
                 icon: Icons.info_outline_rounded,
                 bubbleColor: AppColors.cream,
-                iconColor: AppColors.ink,
+                iconColor: AppColors.border,
                 bubbleRing: AppColors.ink,
                 title: 'SOBRE O APP',
-                subTitle: 'Termos, privacidade e versão',
+                subTitle: 'termos, privacidade e versão',
               ),
             ],
           ),
@@ -75,7 +75,7 @@ class const MoreScreen({super.key, required final AuthSessionNotifier session})
             width: double.infinity,
             child: FilledButton(
               style: AppTheme.dangerOutlineButton,
-              onPressed: session.logout,
+              onPressed: _session.logout,
               child: Text('SAIR DA CONTA'),
             ),
           ),

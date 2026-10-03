@@ -9,10 +9,14 @@ class const HomeBindings({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) =>
-          HomeViewModel(albumRepository: context.read()).initialized(),
-      child: Builder(builder: screenBuilder),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) =>
+              HomeViewModel(albumRepository: context.read()).initialized(),
+        ),
+      ],
+      builder: (context, child) => screenBuilder(context),
     );
   }
 }

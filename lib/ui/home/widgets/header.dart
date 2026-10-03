@@ -1,6 +1,6 @@
+import 'package:material_ui/material_ui.dart';
 import 'package:appwordcup2026/ui/core/share/initials_avatar.dart';
 import 'package:appwordcup2026/ui/core/theme/theme.dart';
-import 'package:material_ui/material_ui.dart';
 
 class const Header({
   super.key,
@@ -30,7 +30,7 @@ class const Header({
               spacing: 5,
               children: [
                 Text(
-                  'OLÁ, COLECIONADOR',
+                  'OLÁ COLECIONADOR',
                   style: AppTextStyles.overline.copyWith(
                     color: AppColors.grayText,
                   ),

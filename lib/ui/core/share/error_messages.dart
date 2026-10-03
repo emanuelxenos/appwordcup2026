@@ -1,6 +1,5 @@
 import 'package:appwordcup2026/core/exceptions/app_exception.dart';
 
-
 final class ErrorMessages._() {
   static String of(AppException error) => switch (error) {
     NetworkException() =>
@@ -12,8 +11,8 @@ final class ErrorMessages._() {
     NotFoundException() => 'Não encontramos o que você procurou.',
     ServerException() =>
       'Estamos com um problema no servidor. Tente mais tarde.',
-    UnknownException() => 'Algo deu errado. Tente novamente.',
-     EmailAlreadyInUseException() =>
+
+    EmailAlreadyInUseException() =>
       'Este e-mail já tem conta. Entre com ele ou use outro',
     StorageException() ||
     UnknownException() => 'Algo deu errado. Tente novamente.',

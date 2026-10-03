@@ -1,11 +1,8 @@
-import 'package:appwordcup2026/ui/core/share/labeled_field.dart';
-import 'package:appwordcup2026/ui/core/share/required_text.dart';
-import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
-import 'package:appwordcup2026/ui/core/theme/app_shadows.dart';
-import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:validatorless/validatorless.dart';
+import 'package:appwordcup2026/ui/core/share/labeled_field.dart';
+import 'package:appwordcup2026/ui/core/share/required_text.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class const RegisterForm({
   super.key,

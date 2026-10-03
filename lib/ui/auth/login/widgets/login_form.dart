@@ -1,17 +1,14 @@
-import 'package:appwordcup2026/ui/core/share/labeled_field.dart';
-import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
-import 'package:appwordcup2026/ui/core/theme/app_shadows.dart';
-import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
-import 'package:appwordcup2026/ui/core/theme/app_theme.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
-import 'package:validatorless/validatorless.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:validatorless/validatorless.dart';
+import 'package:appwordcup2026/ui/core/share/labeled_field.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
-class const LoginForm({super.key, 
-required final TextEditingController emailController,
-required final TextEditingController passwordController,
- final VoidCallback? onSubmit}) extends StatelessWidget {
-  
+class const LoginForm({
+  super.key,
+  required final TextEditingController emailController,
+  required final TextEditingController passwordController,
+  final VoidCallback? onSubmit,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,7 +61,7 @@ required final TextEditingController passwordController,
             hint: '*********',
             textInputAction: .done,
             required: true,
-            validator: Validatorless.required('Senha obrigatório'),
+            validator: Validatorless.required('Senha obrigatória'),
           ),
           TextButton(
             onPressed: () {},

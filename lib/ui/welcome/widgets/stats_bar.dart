@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:appwordcup2026/ui/core/theme/app_colors.dart';
 import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
 import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
-import 'package:flutter/material.dart';
 
 class const StatsBar({super.key}) extends StatelessWidget {
   @override

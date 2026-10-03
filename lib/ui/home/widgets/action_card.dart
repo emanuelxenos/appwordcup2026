@@ -1,5 +1,5 @@
-import 'package:appwordcup2026/ui/core/theme/theme.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class const ActionCard({
   super.key,
@@ -38,29 +38,25 @@ class const ActionCard({
                     child: Icon(icon, size: 22, color: iconColor),
                   ),
                   const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: .start,
-                      mainAxisSize: .min,
-                      spacing: 7,
-                      children: [
-                        FittedBox(
-                          alignment: .centerLeft,
-                          fit: .scaleDown,
-                          child: Text(title, style: AppTextStyles.subhead),
-                        ),
-                        FittedBox(
-                          alignment: .centerLeft,
-                          fit: .scaleDown,
-                          child: Text(
-                            subTitle,
-                            style: AppTextStyles.footnote.copyWith(
-                              color: AppColors.grayText,
-                            ),
+                  Column(
+                    crossAxisAlignment: .start,
+                    mainAxisSize: .min,
+                    spacing: 7,
+                    children: [
+                      FittedBox(
+                        fit: .scaleDown,
+                        child: Text(title, style: AppTextStyles.subhead),
+                      ),
+                      FittedBox(
+                        fit: .scaleDown,
+                        child: Text(
+                          subTitle,
+                          style: AppTextStyles.footnote.copyWith(
+                            color: AppColors.grayText,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),

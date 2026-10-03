@@ -1,6 +1,5 @@
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class const RequiredText({
   super.key,

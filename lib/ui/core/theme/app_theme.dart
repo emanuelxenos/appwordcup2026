@@ -1,11 +1,13 @@
-import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
-import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:material_ui/material_ui.dart';
 
-final class AppTheme._(){
+import 'app_colors.dart';
+import 'app_dimens.dart';
+import 'app_text_styles.dart';
+
+final class AppTheme._() {
   static const _colorScheme = ColorScheme(
-    brightness: Brightness.light,
+    brightness: .light,
+
     primary: AppColors.red,
     onPrimary: AppColors.white,
     secondary: AppColors.yellow,
@@ -28,9 +30,8 @@ final class AppTheme._(){
     required Color foreground,
     BorderSide? side,
     double height = AppDimens.buttonHeight,
-  }) {
-    return FilledButton.styleFrom(
-      backgroundColor: background,
+  }) => FilledButton.styleFrom(
+    backgroundColor: background,
     foregroundColor: foreground,
     disabledBackgroundColor: AppColors.border,
     disabledForegroundColor: AppColors.grayText,
@@ -41,8 +42,7 @@ final class AppTheme._(){
     shape: const StadiumBorder(),
     side: side,
     elevation: 0,
-    );
-  }
+  );
 
   static final primaryButton = _buttonStyle(
     background: AppColors.yellow,
@@ -84,13 +84,14 @@ final class AppTheme._(){
     side: BorderSide(color: AppColors.red.withValues(alpha: .6), width: 1.5),
     height: 44,
   );
-  
-  static OutlineInputBorder _inputBorder(Color color, double width) {
-    return OutlineInputBorder(
-      borderRadius: AppDimens.borderRadiusSm,
-      borderSide: BorderSide(color: color, width: width),
-    );
-  }
+
+  static OutlineInputBorder inputBorder(Color color, double width) =>
+      OutlineInputBorder(
+        borderRadius: AppDimens.borderRadiusSm,
+        borderSide: BorderSide(color: color, width: width),
+      );
+
+  static const _searchFill = Color(0xFFF5F5F0);
 
   static const _searchBorder = OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -98,36 +99,48 @@ final class AppTheme._(){
   );
 
   static InputDecoration get searchInput => InputDecoration(
-    filled: true,
-    hintText: 'Buscar...',
-    hintStyle: AppTextStyles.body.copyWith( fontSize: 12, color: AppColors.grayText),
-    fillColor: AppColors.white,
-    contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 13.5),
+    fillColor: _searchFill,
+    hintText: 'Buscar…',
+    hintStyle: AppTextStyles.body.copyWith(
+      fontSize: 12,
+      color: AppColors.grayText,
+    ),
+    prefixIcon: const Icon(Icons.search, size: 18, color: AppColors.grayText),
+
     border: _searchBorder,
     enabledBorder: _searchBorder,
-    disabledBorder: _searchBorder,
     focusedBorder: _searchBorder,
-    prefixIconColor: AppColors.grayText,
-    suffixIconColor: AppColors.grayText,
   );
 
   static var light = ThemeData(
     colorScheme: _colorScheme,
     scaffoldBackgroundColor: AppColors.cream,
     textTheme: AppTextStyles.textTheme,
+
     filledButtonTheme: FilledButtonThemeData(style: primaryButton),
-    inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: InputDecorationThemeData(
       filled: true,
       fillColor: AppColors.white,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 13.5),
-      border: _inputBorder(AppColors.border, 1.5),
-      enabledBorder: _inputBorder(AppColors.border, 1.5),
-      disabledBorder: _inputBorder(AppColors.border, 1.5),
-      focusedBorder: _inputBorder(AppColors.green, 2),
-      errorBorder: _inputBorder(AppColors.red, 2),
-      focusedErrorBorder: _inputBorder(AppColors.red, 2),
+
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 13.5,
+      ),
+      hintStyle: AppTextStyles.body.copyWith(color: AppColors.grayText),
+      errorStyle: AppTextStyles.body.copyWith(
+        fontSize: 10,
+        color: AppColors.red,
+      ),
+      border: inputBorder(AppColors.border, 1.5),
+      enabledBorder: inputBorder(AppColors.border, 1.5),
+      disabledBorder: inputBorder(AppColors.border, 1.5),
+
+      focusedBorder: inputBorder(AppColors.green, 2),
+      errorBorder: inputBorder(AppColors.red, 2),
+      focusedErrorBorder: inputBorder(AppColors.red, 2),
     ),
-     checkboxTheme: CheckboxThemeData(
+
+    checkboxTheme: CheckboxThemeData(
       fillColor: WidgetStateProperty.resolveWith(
         (states) => states.contains(WidgetState.selected)
             ? AppColors.red
@@ -192,5 +205,4 @@ final class AppTheme._(){
       titleTextStyle: AppTextStyles.heading,
     ),
   );
-
 }

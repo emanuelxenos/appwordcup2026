@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:material_ui/material_ui.dart';
 import 'package:appwordcup2026/core/logging/app_logger.dart';
 import 'package:appwordcup2026/core/result.dart';
 import 'package:appwordcup2026/domain/models/auth_session.dart';
 import 'package:appwordcup2026/domain/use_cases/auth/auth_logout_use_case.dart';
-import 'package:appwordcup2026/domain/use_cases/auth/auth_restore_session.dart';
-import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/domain/use_cases/auth/auth_restore_session_use_case.dart';
 
 class AuthSessionNotifier({
   required final AuthLogoutUseCase _authLogoutUseCase,
@@ -22,19 +22,11 @@ class AuthSessionNotifier({
   AuthSessionUser? get user => _user;
   bool get isSignedIn => _user != null;
 
-  String get initials {
-    final name = _user?.name.trim() ?? '';
-    if (name.isEmpty) return '';
-
-    final words = name.split(RegExp(r'\s+'));
-    final first = words.first[0];
-    return (words.length == 1 ? first : first + words.last[0]).toUpperCase();
-  }
-
   this {
     unawaited(_restore());
+
     _sessionEnded = sessionEnded.listen((_) {
-      _log.info('Backend encerrou a sessão');
+      _log.info('Backend Encerrou a sessão');
       unawaited(logout());
     });
   }
@@ -54,6 +46,15 @@ class AuthSessionNotifier({
 
     _restored = true;
     notifyListeners();
+  }
+
+  String get initials {
+    final name = _user?.name.trim() ?? '';
+    if (name.isEmpty) return '';
+
+    final words = name.split(RegExp(r'\s+'));
+    final first = words.first[0];
+    return (words.length == 1 ? first : first + words.last[0]).toUpperCase();
   }
 
   void signedIn(AuthSessionUser user) {
@@ -82,7 +83,7 @@ class AuthSessionNotifier({
 
   @override
   void dispose() {
-    unawaited(_sessionEnded.cancel());
+    _sessionEnded.cancel();
     super.dispose();
   }
 }

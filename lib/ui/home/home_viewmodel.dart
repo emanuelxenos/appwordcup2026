@@ -1,5 +1,5 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:appwordcup2026/core/exceptions/command.dart';
+import 'package:appwordcup2026/core/command.dart';
 import 'package:appwordcup2026/core/logging/app_logger.dart';
 import 'package:appwordcup2026/core/result.dart';
 import 'package:appwordcup2026/core/view_model_initializable.dart';
@@ -81,7 +81,7 @@ class HomeViewModel({required final AlbumRepository _albumRepository})
           return Result.done;
         case Error<List<RecentSticker>>(:final error):
           _log.error(
-            'Falha ao carregar as figurinhas recentes',
+            'Falha ao carregar as figurinhas recentes ',
             error: error,
             stackTrace: error.stackTrace,
           );

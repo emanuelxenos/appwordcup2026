@@ -1,6 +1,6 @@
-import 'package:appwordcup2026/data/services/api/model/team/team_api_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:appwordcup2026/data/services/api/model/team/team_api_model.dart';
 
 part 'recent_sticker_api_model.g.dart';
 

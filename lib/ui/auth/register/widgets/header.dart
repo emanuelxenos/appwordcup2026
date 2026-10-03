@@ -1,10 +1,8 @@
-import 'package:appwordcup2026/ui/core/share/app_assets.dart';
-import 'package:appwordcup2026/ui/core/share/glass_bar.dart';
-import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
-import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/share/app_assets.dart';
+import 'package:appwordcup2026/ui/core/share/glass_bar.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class const Header({super.key}) extends StatelessWidget {
   @override

@@ -7,12 +7,12 @@ part 'login_request.g.dart';
 class const LoginRequest({
   required final String email,
   required final String password,
-}) extends Equatable{
-
- factory LoginRequest.fromJson(Map<String, dynamic> json) => _$LoginRequestFromJson(json);
+}) extends Equatable {
+  factory LoginRequest.fromJson(Map<String, dynamic> json) =>
+      _$LoginRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginRequestToJson(this);
-  
+
   @override
   List<Object?> get props => [email, password];
 

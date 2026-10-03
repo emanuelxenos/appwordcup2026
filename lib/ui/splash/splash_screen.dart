@@ -1,49 +1,52 @@
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:appwordcup2026/core/auth/auth_session_notifier.dart';
 import 'package:appwordcup2026/routing/routes.dart';
 import 'package:appwordcup2026/ui/core/share/app_assets.dart';
 import 'package:appwordcup2026/ui/core/share/licensed_badge.dart';
 import 'package:appwordcup2026/ui/core/share/logo_card.dart';
+import 'package:appwordcup2026/ui/core/theme/app_colors.dart';
 import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:appwordcup2026/ui/splash/widgets/boot_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:material_ui/material_ui.dart';
 
-class const SplashScreen({super.key, required final AuthSessionNotifier _sessionNotifier}) extends StatefulWidget {
+class const SplashScreen({
+  super.key,
+  required final AuthSessionNotifier _sessionNotifier,
+}) extends StatefulWidget {
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late final _boot = AnimationController(
+    vsync: this,
+    duration: Duration(milliseconds: 2400),
+  );
 
-late final  _boot = AnimationController(
-  vsync: this,
-  duration:  Duration(milliseconds: 2400),
-);
+  @override
+  void initState() {
+    super.initState();
 
-@override
-initState() {
-  super.initState();
-  widget._sessionNotifier.addListener(_exitWhenReady);
-  _boot.forward().then((_) {
-    _exitWhenReady();
-  });
-}
+    widget._sessionNotifier.addListener(_exitWhenReady);
+    _boot.forward().then((_) => _exitWhenReady());
+  }
 
-@override
+  void _exitWhenReady() {
+    if (!mounted || !_boot.isCompleted || !widget._sessionNotifier.isRestored) {
+      return;
+    }
+    widget._sessionNotifier.removeListener(_exitWhenReady);
+
+    context.go(Routes.welcome);
+  }
+
+  @override
   void dispose() {
     widget._sessionNotifier.removeListener(_exitWhenReady);
     _boot.dispose();
     super.dispose();
-  }
-
-  void _exitWhenReady() {
-    if (!mounted || !_boot.isCompleted || !widget._sessionNotifier.isRestored) return; 
-
-    widget._sessionNotifier.removeListener(_exitWhenReady);
-
-    context.go(Routes.welcome);
   }
 
   @override
@@ -84,15 +87,16 @@ initState() {
                         height: 72,
                         child: AnimatedBuilder(
                           animation: _boot,
-                          builder: (_,_) {
+                          builder: (_, _) {
                             return BootBar(progress: _boot.value);
-                          }
+                          },
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
+
               Text('V1.0.0 - Fifa World Cup 26', style: AppTextStyles.overline),
               const SizedBox(height: 20),
             ],

@@ -1,6 +1,6 @@
+import 'package:material_ui/material_ui.dart';
 import 'package:appwordcup2026/ui/core/share/initials_avatar.dart';
 import 'package:appwordcup2026/ui/core/theme/theme.dart';
-import 'package:material_ui/material_ui.dart';
 
 class const ProfileCard({
   super.key,
@@ -26,7 +26,7 @@ class const ProfileCard({
                 size: 58,
                 style: AppTextStyles.title,
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               Column(
                 crossAxisAlignment: .start,
                 mainAxisSize: .min,
@@ -44,8 +44,8 @@ class const ProfileCard({
                   ),
                 ],
               ),
-              const Spacer(),
-              const Icon(
+              Spacer(),
+              Icon(
                 Icons.arrow_forward_rounded,
                 color: AppColors.yellow,
                 size: 18,

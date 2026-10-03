@@ -1,5 +1,5 @@
-import 'package:appwordcup2026/config/environment.dart';
 import 'package:flutter/widgets.dart';
+import 'package:appwordcup2026/config/environment.dart';
 
 class const TeamFlag({
   super.key,

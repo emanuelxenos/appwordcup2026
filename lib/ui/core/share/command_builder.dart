@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:appwordcup2026/core/exceptions/command.dart';
+import 'package:appwordcup2026/core/command.dart';
 import 'package:appwordcup2026/core/result.dart';
 import 'package:appwordcup2026/ui/core/share/app_loading.dart';
 import 'package:appwordcup2026/ui/core/share/error_indicator.dart';

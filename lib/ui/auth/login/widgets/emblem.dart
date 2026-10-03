@@ -1,7 +1,6 @@
-import 'package:appwordcup2026/ui/core/share/app_assets.dart';
-import 'package:appwordcup2026/ui/core/theme/app_shadows.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:flutter/widgets.dart';
+import 'package:appwordcup2026/ui/core/share/app_assets.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class Emblem extends StatelessWidget {
   const new({super.key});

@@ -1,12 +1,11 @@
-
-import 'package:appwordcup2026/core/exceptions/command.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/core/command.dart';
 import 'package:appwordcup2026/core/logging/app_logger.dart';
 import 'package:appwordcup2026/core/result.dart';
 import 'package:appwordcup2026/core/view_model_initializable.dart';
 import 'package:appwordcup2026/data/repositories/auth/auth_repository.dart';
 import 'package:appwordcup2026/data/repositories/team/team_repository.dart';
 import 'package:appwordcup2026/domain/models/team/team.dart';
-import 'package:material_ui/material_ui.dart';
 
 typedef NewUser = ({
   String name,
@@ -16,15 +15,12 @@ typedef NewUser = ({
   bool acceptedTerms,
 });
 
-
-class  RegisterViewModel({
- required final AuthRepository _authRepository, 
- required final TeamRepository _teamRepository
- })
- extends ChangeNotifier implements ViewModelInitializable{
+class RegisterViewModel({
+  required final AuthRepository _authRepository,
+  required final TeamRepository _teamRepository,
+}) extends ChangeNotifier implements ViewModelInitializable {
   final _log = AppLogger('RegisterViewModel');
 
- //  Commands
   late final loadTeams = Command0(_loadTeams);
   late final registerUser = Command1<void, NewUser>(_register);
 
@@ -32,15 +28,14 @@ class  RegisterViewModel({
 
   List<Team> get teams => _teams;
 
-  
   @override
   void init() {
     loadTeams.execute();
   }
 
-  List<Team> teamMatching(String term){
+  List<Team> teamMatching(String term) {
     final query = term.trim().toLowerCase();
-    if(query.isEmpty) return _teams;
+    if (query.isEmpty) return _teams;
     return _teams
         .where(
           (team) =>
@@ -50,17 +45,19 @@ class  RegisterViewModel({
         .toList();
   }
 
-  Future<Result<void>> _loadTeams() async{
+  Future<Result<void>> _loadTeams() async {
     final teams = await _teamRepository.getTeams();
-    switch(teams) {
+
+    switch (teams) {
       case Ok<List<Team>>(:final value):
         _teams = value;
+        _log.debug('${value.length} seleções no catalogo');
         return Result.done;
       case Error<List<Team>>(:final error):
         _log.error(
-          'Falha ao carregar catalogo de seleção',
+          'Falha ao carregar o catálogo de seleções',
           error: error,
-          stackTrace: error.stackTrace, 
+          stackTrace: error.stackTrace,
         );
         return Result.error(error);
     }
@@ -84,5 +81,4 @@ class  RegisterViewModel({
     }
     return result;
   }
-
 }

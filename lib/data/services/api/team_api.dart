@@ -1,7 +1,7 @@
-import 'package:appwordcup2026/data/services/api/interceptors/auth_interceptor.dart';
-import 'package:appwordcup2026/data/services/api/model/team/team_api_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:appwordcup2026/data/services/api/interceptors/auth_interceptor.dart';
+import 'package:appwordcup2026/data/services/api/model/team/team_api_model.dart';
 
 part 'team_api.g.dart';
 

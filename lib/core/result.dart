@@ -1,4 +1,3 @@
-
 import 'package:appwordcup2026/core/exceptions/app_exception.dart';
 
 sealed class const Result<T>() {

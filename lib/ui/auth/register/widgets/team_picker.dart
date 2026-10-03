@@ -1,13 +1,10 @@
+import 'package:material_ui/material_ui.dart';
 import 'package:appwordcup2026/domain/models/team/team.dart';
 import 'package:appwordcup2026/ui/core/share/app_loading.dart';
 import 'package:appwordcup2026/ui/core/share/error_indicator.dart';
 import 'package:appwordcup2026/ui/core/share/required_text.dart';
 import 'package:appwordcup2026/ui/core/share/team_flag.dart';
-import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
-import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
-import 'package:appwordcup2026/ui/core/theme/app_theme.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
-import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class const TeamPicker({
   super.key,

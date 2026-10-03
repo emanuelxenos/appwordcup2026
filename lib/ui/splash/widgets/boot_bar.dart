@@ -1,7 +1,5 @@
-import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
-import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class const BootBar({super.key, required final double progress})
     extends StatelessWidget {

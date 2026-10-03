@@ -1,5 +1,5 @@
-import 'package:appwordcup2026/ui/core/theme/theme.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
   const new({super.key});

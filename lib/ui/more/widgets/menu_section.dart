@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:appwordcup2026/ui/core/theme/theme.dart';
 import 'package:appwordcup2026/ui/more/widgets/menu_row.dart';
-import 'package:material_ui/material_ui.dart';
 
 class const MenuSection({
   super.key,

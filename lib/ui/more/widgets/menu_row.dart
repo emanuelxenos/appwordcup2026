@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:appwordcup2026/ui/core/theme/theme.dart';
-import 'package:material_ui/material_ui.dart';
 
 class const MenuRow({
   super.key,
@@ -27,7 +27,7 @@ class const MenuRow({
         subTitle,
         style: AppTextStyles.footnote.copyWith(color: AppColors.grayText),
       ),
-      trailing: const Icon(Icons.arrow_forward_rounded),
+      trailing: Icon(Icons.arrow_forward_rounded),
     );
   }
 }

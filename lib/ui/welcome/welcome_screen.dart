@@ -1,12 +1,11 @@
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:appwordcup2026/routing/routes.dart';
 import 'package:appwordcup2026/ui/core/share/app_assets.dart';
 import 'package:appwordcup2026/ui/core/share/licensed_badge.dart';
 import 'package:appwordcup2026/ui/core/share/logo_card.dart';
 import 'package:appwordcup2026/ui/welcome/widgets/stats_bar.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:material_ui/material_ui.dart';
-
 
 import '../core/theme/theme.dart';
 

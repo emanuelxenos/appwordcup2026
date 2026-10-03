@@ -1,5 +1,5 @@
-import 'package:appwordcup2026/core/exceptions/app_exception.dart';
 import 'package:dio/dio.dart';
+import 'package:appwordcup2026/core/exceptions/app_exception.dart';
 
 extension DioExceptionMapper on DioException {
   AppException toAppException(StackTrace st) {
@@ -17,15 +17,19 @@ extension DioExceptionMapper on DioException {
     };
   }
 
-
-  AppException _fromStatus(int? status, StackTrace st) {
-    return switch (status) {
-      400 || 422 => ValidationException('Dados inválidos', cause: this, stackTrace: st),
-      401 => UnauthorizedException(cause: this, stackTrace: st),
-      403 => ForbiddenException(cause: this, stackTrace: st),
-      404 => NotFoundException(cause: this, stackTrace: st),
-      final code? when code > 500 => ServerException(cause: this, stackTrace: st),
-      _ => UnknownException(cause: this, stackTrace: st),
-    };
-  }
+  AppException _fromStatus(int? status, StackTrace st) => switch (status) {
+    400 || 422 => ValidationException(
+      'Dados Inválidos, Revise e tente novamente',
+      cause: this,
+      stackTrace: st,
+    ),
+    401 => UnauthorizedException(cause: this, stackTrace: st),
+    403 => ForbiddenException(cause: this, stackTrace: st),
+    404 => NotFoundException(cause: this, stackTrace: st),
+    final code? when code >= 500 => ServerException(
+      cause: this,
+      stackTrace: st,
+    ),
+    _ => UnknownException(cause: this, stackTrace: st),
+  };
 }

@@ -1,6 +1,6 @@
-import 'package:appwordcup2026/ui/core/share/required_text.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/share/required_text.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class const LabeledField({
   super.key,

@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:material_ui/material_ui.dart';
 import 'package:appwordcup2026/ui/main/widgets/bottom_nav_bar.dart';
 
 class const MainScreen({

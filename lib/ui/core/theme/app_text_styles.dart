@@ -1,13 +1,14 @@
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/theme/app_colors.dart';
 
-final class AppTextStyles ._() {
+final class AppTextStyles._() {
   static TextStyle get display => GoogleFonts.archivoBlack(
     fontSize: 36,
     fontWeight: .w400,
+    letterSpacing: -0.5,
     height: 1,
-    color: AppColors.ink
+    color: AppColors.ink,
   );
 
   static TextStyle get heading => GoogleFonts.archivoBlack(

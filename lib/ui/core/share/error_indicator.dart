@@ -1,5 +1,5 @@
-import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class const ErrorIndicator({
   super.key,

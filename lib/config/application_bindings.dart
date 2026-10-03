@@ -1,52 +1,65 @@
-import 'package:appwordcup2026/config/environment.dart';
-import 'package:appwordcup2026/core/auth/auth_session_notifier.dart';
-import 'package:appwordcup2026/data/repositories/auth/auth_repository.dart';
-import 'package:appwordcup2026/data/repositories/auth/auth_repository_remote.dart';
-import 'package:appwordcup2026/data/repositories/album/album_repository.dart';
-import 'package:appwordcup2026/data/repositories/album/album_repository_remote.dart';
-import 'package:appwordcup2026/data/repositories/auth_session/auth_session_repository.dart';
-import 'package:appwordcup2026/data/repositories/auth_session/auth_session_repository_local.dart';
-import 'package:appwordcup2026/data/repositories/team/team_repository.dart';
-import 'package:appwordcup2026/data/repositories/team/team_repository_remote.dart';
-import 'package:appwordcup2026/data/services/api/auth_api.dart';
-import 'package:appwordcup2026/data/services/api/album_api.dart';
-import 'package:appwordcup2026/data/services/api/interceptors/auth_interceptor.dart';
-import 'package:appwordcup2026/data/services/api/local/secure_storage_service.dart';
-import 'package:appwordcup2026/data/services/api/team_api.dart';
-import 'package:appwordcup2026/domain/use_cases/auth/auth_logout_use_case.dart';
-import 'package:appwordcup2026/domain/use_cases/auth/auth_restore_session.dart';
-import 'package:appwordcup2026/routing/router.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:appwordcup2026/config/environment.dart';
+import 'package:appwordcup2026/core/auth/auth_session_notifier.dart';
+import 'package:appwordcup2026/data/repositories/album/album_repository.dart';
+import 'package:appwordcup2026/data/repositories/album/album_repository_remote.dart';
+import 'package:appwordcup2026/data/repositories/auth/auth_repository.dart';
+import 'package:appwordcup2026/data/repositories/auth/auth_repository_remote.dart';
+import 'package:appwordcup2026/data/repositories/auth_session/auth_session_repository.dart';
+import 'package:appwordcup2026/data/repositories/auth_session/auth_session_repository_local.dart';
+import 'package:appwordcup2026/data/repositories/team/team_repository.dart';
+import 'package:appwordcup2026/data/repositories/team/team_repository_remote.dart';
+import 'package:appwordcup2026/data/services/api/album_api.dart';
+import 'package:appwordcup2026/data/services/api/auth_api.dart';
+import 'package:appwordcup2026/data/services/api/interceptors/auth_interceptor.dart';
+import 'package:appwordcup2026/data/services/api/team_api.dart';
+import 'package:appwordcup2026/data/services/local/secure_storage_service.dart';
+import 'package:appwordcup2026/domain/use_cases/auth/auth_logout_use_case.dart';
+import 'package:appwordcup2026/domain/use_cases/auth/auth_restore_session_use_case.dart';
+import 'package:appwordcup2026/routing/router.dart';
 
-class const ApplicationBindings({super.key, required final Widget child}) extends StatelessWidget {
-  
+class const ApplicationBindings({super.key, required final Widget child})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider(create: (context) => SecureStorageService(),),
+        Provider(create: (context) => SecureStorageService()),
+
         Provider(
           create: (context) => AuthInterceptor(storage: context.read()),
           dispose: (context, interceptor) => interceptor.dispose(),
         ),
+
         Provider(
           create: (context) =>
               Dio(BaseOptions(baseUrl: Environment.baseUrl))
                 ..interceptors.add(context.read<AuthInterceptor>()),
         ),
+
         Provider(create: (context) => AuthApi(context.read())),
-        Provider<AuthRepository>(create: (context) => AuthRepositoryRemote(authApi: context.read())),
+        Provider<AuthRepository>(
+          create: (context) => AuthRepositoryRemote(authApi: context.read()),
+        ),
+        Provider<AuthSessionRepository>(
+          create: (context) =>
+              AuthSessionRepositoryLocal(storage: context.read()),
+        ),
+
+        Provider(create: (context) => TeamApi(context.read())),
+        Provider<TeamRepository>(
+          create: (context) => TeamRepositoryRemote(teamApi: context.read()),
+        ),
+
         Provider(create: (context) => AlbumApi(context.read())),
         Provider<AlbumRepository>(
           create: (context) => AlbumRepositoryRemote(albumApi: context.read()),
         ),
-        Provider<AuthSessionRepository>(create: (context) => AuthSessionRepositoryLocal(storage: context.read()),),
-        Provider(create: (context) => TeamApi(context.read()),),
-        Provider<TeamRepository>(create: (context) => TeamRepositoryRemote(teamApi: context.read()),),
-         Provider(
+
+        Provider(
           create: (context) =>
               AuthLogoutUseCase(authSessionRepository: context.read()),
         ),
@@ -54,6 +67,7 @@ class const ApplicationBindings({super.key, required final Widget child}) extend
           create: (context) =>
               AuthRestoreSessionUseCase(authSessionRepository: context.read()),
         ),
+
         ChangeNotifierProvider(
           lazy: false,
           create: (context) => AuthSessionNotifier(
@@ -67,5 +81,4 @@ class const ApplicationBindings({super.key, required final Widget child}) extend
       child: child,
     );
   }
-
 }

@@ -1,5 +1,5 @@
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
+import 'package:appwordcup2026/ui/core/theme/app_colors.dart';
 
 class const GlassBar({
   super.key,

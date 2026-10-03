@@ -1,6 +1,6 @@
+import 'package:flutter/widgets.dart';
 import 'package:appwordcup2026/ui/core/share/team_flag.dart';
 import 'package:appwordcup2026/ui/core/theme/theme.dart';
-import 'package:material_ui/material_ui.dart';
 
 class const StickerCard({
   super.key,
@@ -21,16 +21,13 @@ class const StickerCard({
           color: AppColors.white,
           borderRadius: AppDimens.borderRadiusMd,
           border: rare
-              ? Border.all(color: AppColors.yellow, width: 1.5)
-              : Border.all(color: AppColors.border),
+              ? .all(color: AppColors.yellow, width: 1.5)
+              : .all(color: AppColors.border),
         ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: onTap,
-            borderRadius: AppDimens.borderRadiusMd,
-            child: Padding(
-              padding: const EdgeInsets.all(7),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const .all(7.0),
               child: Column(
                 children: [
                   SizedBox(
@@ -74,7 +71,7 @@ class const StickerCard({
                 ],
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -82,8 +79,8 @@ class const StickerCard({
 }
 
 class const _Flag(final String? code) extends StatelessWidget {
-  final double _flagSize = 44;
-  final double _ringWidth = 2;
+  final _flagSize = 44.0;
+  final _ringWidth = 2.0;
 
   @override
   Widget build(BuildContext context) {

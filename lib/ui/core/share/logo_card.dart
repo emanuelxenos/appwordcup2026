@@ -1,13 +1,10 @@
-import 'package:appwordcup2026/ui/core/share/app_assets.dart';
-import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
-import 'package:appwordcup2026/ui/core/theme/app_shadows.dart';
-import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
+import 'package:flutter/widget_previews.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/share/app_assets.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
-
-// @Preview(size: Size(390, 280))
-// Widget logoCardPreview() => MaterialApp(home: Scaffold(body: LogoCard()));
+@Preview(size: Size(390, 280))
+Widget logoCardPreview() => MaterialApp(home: Scaffold(body: LogoCard()));
 
 class const LogoCard({super.key}) extends StatelessWidget {
   @override

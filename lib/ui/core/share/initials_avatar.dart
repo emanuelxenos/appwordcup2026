@@ -1,5 +1,5 @@
-import 'package:appwordcup2026/ui/core/theme/theme.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/theme/app_colors.dart';
 
 class const InitialsAvatar({
   super.key,
@@ -8,7 +8,7 @@ class const InitialsAvatar({
   required final TextStyle style,
   final Color? ringColor,
 }) extends StatelessWidget {
-  final double _ringWidth = 2;
+  final _ringWidth = 2.0;
 
   @override
   Widget build(BuildContext context) {

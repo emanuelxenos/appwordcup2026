@@ -1,19 +1,24 @@
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:appwordcup2026/core/auth/auth_session_notifier.dart';
 import 'package:appwordcup2026/routing/routes.dart';
+import 'package:appwordcup2026/ui/album/album_bindings.dart';
+import 'package:appwordcup2026/ui/album/album_screen.dart';
 import 'package:appwordcup2026/ui/auth/login/login_bindings.dart';
 import 'package:appwordcup2026/ui/auth/login/login_screen.dart';
 import 'package:appwordcup2026/ui/auth/register/register_bindings.dart';
 import 'package:appwordcup2026/ui/auth/register/register_screen.dart';
-import 'package:appwordcup2026/ui/album/album_screen.dart';
-import 'package:appwordcup2026/ui/home/home_screen.dart';
 import 'package:appwordcup2026/ui/home/home_bindings.dart';
+import 'package:appwordcup2026/ui/home/home_screen.dart';
 import 'package:appwordcup2026/ui/main/main_screen.dart';
 import 'package:appwordcup2026/ui/more/more_screen.dart';
 import 'package:appwordcup2026/ui/splash/splash_screen.dart';
+import 'package:appwordcup2026/ui/sticker/detail/detail_bindings.dart';
+import 'package:appwordcup2026/ui/sticker/detail/detail_screen.dart';
+import 'package:appwordcup2026/ui/sticker/register/sticker_register_bindings.dart';
+import 'package:appwordcup2026/ui/sticker/register/sticker_register_screen.dart';
 import 'package:appwordcup2026/ui/trades/trades_screen.dart';
 import 'package:appwordcup2026/ui/welcome/welcome_screen.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 GoRouter router(AuthSessionNotifier session) => GoRouter(
   initialLocation: Routes.splash,
@@ -41,16 +46,38 @@ GoRouter router(AuthSessionNotifier session) => GoRouter(
       path: Routes.login,
       builder: (_, _) => LoginBindings(
         screenBuilder: (context) {
-          return LoginScreen(viewmodel: context.read());
+          return LoginScreen(viewModel: context.read());
         },
       ),
     ),
     GoRoute(
-      path: Routes.register,
-      builder: (_, _) => RegisterBindings(
+      path: Routes.authRegister,
+      builder: (context, state) => RegisterBindings(
         screenBuilder: (context) => RegisterScreen(viewModel: context.read()),
       ),
     ),
+
+    GoRoute(
+      path: Routes.stickerRegister,
+      builder: (context, state) => StickerRegisterBindings(
+        screenBuilder: (context) =>
+            StickerRegisterScreen(viewModel: context.read()),
+      ),
+    ),
+
+    GoRoute(
+      path: Routes.stickerPath,
+      builder: (context, state) {
+        final sticker = state.extra as DetailArgs;
+
+        return DetailBindings(
+          stickers: sticker,
+          screenBuilder: (context) =>
+              DetailScreen(sticker: sticker, viewModel: context.read()),
+        );
+      },
+    ),
+
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
           MainScreen(navigationShell: navigationShell),
@@ -62,9 +89,7 @@ GoRouter router(AuthSessionNotifier session) => GoRouter(
               builder: (context, state) => HomeBindings(
                 screenBuilder: (context) => HomeScreen(
                   viewModel: context.read(),
-                  session: session,
-                  name: state.extra as String? ?? session.user?.name ?? '',
-                  initials: session.initials,
+                  session: context.read(),
                 ),
               ),
             ),
@@ -74,7 +99,10 @@ GoRouter router(AuthSessionNotifier session) => GoRouter(
           routes: [
             GoRoute(
               path: Routes.album,
-              builder: (context, state) => AlbumScreen(),
+              builder: (context, state) => AlbumBindings(
+                screenBuilder: (context) =>
+                    AlbumScreen(viewModel: context.read()),
+              ),
             ),
           ],
         ),

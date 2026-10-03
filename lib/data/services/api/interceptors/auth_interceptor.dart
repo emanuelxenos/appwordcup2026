@@ -1,20 +1,20 @@
 import 'dart:async';
 
-import 'package:appwordcup2026/core/logging/app_logger.dart';
-import 'package:appwordcup2026/data/services/api/local/secure_storage_service.dart';
-import 'package:appwordcup2026/data/services/api/local/storage_keys.dart';
 import 'package:dio/dio.dart';
+import 'package:appwordcup2026/core/logging/app_logger.dart';
+import 'package:appwordcup2026/data/services/local/secure_storage_service.dart';
+import 'package:appwordcup2026/data/services/local/storage_keys.dart';
 
-class AuthInterceptor extends Interceptor {
-  AuthInterceptor({required this._storage});
-
+class AuthInterceptor({required final SecureStorageService _storage})
+    extends Interceptor {
   static const publicRoute = <String, Object>{_publicRouteKey: true};
+
   static const _publicRouteKey = 'publicRoute';
   static const _sessionEndedStatus = {401, 403};
 
-  final SecureStorageService _storage;
   final _log = AppLogger('AuthInterceptor');
-  final _unauthorized = StreamController<void>.broadcast();
+
+  final _unauthorized = StreamController.broadcast();
 
   Stream<void> get onUnauthorized => _unauthorized.stream;
 
@@ -28,17 +28,17 @@ class AuthInterceptor extends Interceptor {
     }
 
     final token = await _storage.fetch(StorageKeys.authToken);
-    if (token != null && token.isNotEmpty) {
+    if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';
     }
 
-    return handler.next(options);
+    handler.next(options);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     if (_endsSession(err)) {
-      _log.info('Backend recusou o token');
+      _log.info('Backend recursou o token');
       _unauthorized.add(null);
     }
     handler.next(err);
@@ -48,7 +48,5 @@ class AuthInterceptor extends Interceptor {
       _sessionEndedStatus.contains(err.response?.statusCode) &&
       err.requestOptions.headers.containsKey('Authorization');
 
-  void dispose() {
-    unawaited(_unauthorized.close());
-  }
+  void dispose() {}
 }

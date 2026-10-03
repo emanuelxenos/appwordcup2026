@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:appwordcup2026/ui/core/theme/theme.dart';
-import 'package:material_ui/material_ui.dart';
 
 class const RepeatedStrip({
   super.key,
@@ -9,7 +9,6 @@ class const RepeatedStrip({
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.white,
       child: ListTile(
         onTap: onTap,
         tileColor: AppColors.ink,
@@ -25,14 +24,14 @@ class const RepeatedStrip({
             color: AppColors.yellow,
           ),
         ),
-        trailing: const Icon(
+        trailing: Icon(
           Icons.arrow_forward_rounded,
           size: 18,
           color: AppColors.yellow,
         ),
         title: Text('$count REPETIDAS'),
         titleTextStyle: AppTextStyles.subhead.copyWith(color: AppColors.white),
-        subtitle: const Text('Toque para trocar com amigos'),
+        subtitle: Text('toque para trocar com amigos'),
         subtitleTextStyle: AppTextStyles.footnote.copyWith(
           color: AppColors.white,
         ),

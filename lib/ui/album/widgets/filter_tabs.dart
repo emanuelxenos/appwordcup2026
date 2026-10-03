@@ -4,18 +4,18 @@ import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
 class const FilterTabs({
   super.key,
-  required final int total,
-  required final int missing,
-  required final int repeated,
+  required final int _total,
+  required final int _missing,
+  required final int _repeated,
   required final StickerStatus? selected,
   required final ValueChanged<StickerStatus?> onSelected,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final segments = <({String label, int count, StickerStatus? status})>[
-      (label: 'TODAS', count: total, status: null),
-      (label: 'FALTANDO', count: missing, status: StickerStatus.missing),
-      (label: 'REPETIDAS', count: repeated, status: StickerStatus.repeated),
+      (label: 'TODAS', count: _total, status: null),
+      (label: 'FALTANDO', count: _missing, status: .missing),
+      (label: 'REPETIDAS', count: _repeated, status: .repeated),
     ];
 
     return Container(

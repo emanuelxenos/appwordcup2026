@@ -1,17 +1,17 @@
+import 'package:material_ui/material_ui.dart';
 import 'package:appwordcup2026/ui/core/share/app_assets.dart';
+import 'package:appwordcup2026/ui/core/theme/app_colors.dart';
 import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
 import 'package:appwordcup2026/ui/core/theme/app_text_styles.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
-import 'package:material_ui/material_ui.dart';
 
 class const AlbumHero({
   super.key,
-  required final int collected,
-  required final int total,
+  required final int _collected,
+  required final int _total,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final progress = total == 0 ? 0.0 : collected / total;
+    final progress = _total == 0 ? 0.0 : _collected / _total;
     return SizedBox(
       height: 220,
       child: ClipRRect(
@@ -109,7 +109,7 @@ class const AlbumHero({
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      '$collected / $total FIGURINHAS',
+                      '$_collected / $_total FIGURINHAS',
                       style: AppTextStyles.overline.copyWith(
                         color: AppColors.white,
                       ),

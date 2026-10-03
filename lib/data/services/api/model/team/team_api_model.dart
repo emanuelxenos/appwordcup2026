@@ -9,12 +9,12 @@ class const TeamApiModel({
   required final String name,
   required final String flagUrl,
   required final String primaryColor,
-}) extends Equatable{
-
-  factory TeamApiModel.fromJson(Map<String, dynamic> json) => _$TeamApiModelFromJson(json);
+}) extends Equatable {
+  factory TeamApiModel.fromJson(Map<String, dynamic> json) =>
+      _$TeamApiModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$TeamApiModelToJson(this);
 
   @override
-  List<Object?> get props => [code,name, flagUrl,primaryColor];
+  List<Object?> get props => [code, name, flagUrl, primaryColor];
 }

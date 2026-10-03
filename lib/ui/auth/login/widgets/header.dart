@@ -1,7 +1,7 @@
-import 'package:appwordcup2026/ui/core/share/app_assets.dart';
-import 'package:appwordcup2026/ui/core/theme/appcolors.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:appwordcup2026/ui/core/share/app_assets.dart';
+import 'package:appwordcup2026/ui/core/theme/app_colors.dart';
 
 class Header extends StatelessWidget {
   const new({super.key});

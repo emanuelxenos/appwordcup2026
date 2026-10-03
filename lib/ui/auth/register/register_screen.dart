@@ -1,3 +1,5 @@
+import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:appwordcup2026/core/result.dart';
 import 'package:appwordcup2026/routing/routes.dart';
 import 'package:appwordcup2026/ui/auth/register/register_viewmodel.dart';
@@ -5,14 +7,12 @@ import 'package:appwordcup2026/ui/auth/register/widgets/header.dart';
 import 'package:appwordcup2026/ui/auth/register/widgets/register_form.dart';
 import 'package:appwordcup2026/ui/auth/register/widgets/team_picker.dart';
 import 'package:appwordcup2026/ui/core/share/error_messages.dart';
-import 'package:appwordcup2026/ui/core/theme/app_dimens.dart';
-import 'package:go_router/go_router.dart';
-import 'package:material_ui/material_ui.dart';
+import 'package:appwordcup2026/ui/core/theme/theme.dart';
 
-class const RegisterScreen({super.key,
- required final RegisterViewModel viewModel
+class const RegisterScreen({
+  super.key,
+  required final RegisterViewModel viewModel,
 }) extends StatefulWidget {
-
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
@@ -26,7 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   var _acceptedTerms = false;
   final _favorites = <String>{};
-  
+
   @override
   void initState() {
     super.initState();
@@ -64,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
-    void _submit() {
+  void _submit() {
     if (!(_formKey.currentState?.validate() ?? false)) return;
 
     if (_favorites.isEmpty) {
@@ -90,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     ));
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
