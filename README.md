@@ -8,23 +8,14 @@ O app permite gerenciar a coleção de figurinhas do álbum da **Copa do Mundo F
 
 ## 📸 Telas do Aplicativo
 
-### Splash
-![Splash](imagens/splash.png)
-
-### Login e Autenticação
-![Login](imagens/login.png)
-
-### Criar Conta
-![Criar Conta](imagens/criar_conta.png)
-
-### Home (Visão Geral)
-![Home](imagens/home.png)
-
-### Meu Álbum
-![Álbum](imagens/album.png)
-
-### Mais
-![Mais](imagens/mais.png)
+<div align="center">
+  <img src="imagens/splash.png" width="160" title="Splash" alt="Splash" />
+  <img src="imagens/login.png" width="160" title="Login" alt="Login" />
+  <img src="imagens/criar_conta.png" width="160" title="Criar Conta" alt="Criar Conta" />
+  <img src="imagens/home.png" width="160" title="Home" alt="Home" />
+  <img src="imagens/album.png" width="160" title="Álbum" alt="Álbum" />
+  <img src="imagens/mais.png" width="160" title="Mais" alt="Mais" />
+</div>
 
 ---
 
