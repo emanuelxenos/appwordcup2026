@@ -21,6 +21,7 @@ class const MainApp({super.key}) extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: AppTheme.light,
+      debugShowCheckedModeBanner: false,
       builder: (context, child) {
         return MaterialUiCompatibilityBridge(child: child!);
       },
